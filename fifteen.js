@@ -95,7 +95,7 @@ function allPuzzle (){
 			countL += 100;			
 		};	
 	};countL = 0;
-}
+};
 
 function moveable(tile){
 	let pieceTop = tile.style.top;
@@ -161,7 +161,7 @@ function move(tile, movement){
 			}
 
 
-			if (currentTop == posDown || currentTop == posUp){
+			/*if (currentTop == posDown || currentTop == posUp){
 				clearInterval(speed);
 				if (currentTop == posDown){
 					currentTop++;
@@ -174,7 +174,7 @@ function move(tile, movement){
 				}else{
 					currentLeft--;
 				}tile.style.left = currentLeft + "px";
-			};
+			};*/
 		};
 	}
 }
@@ -185,7 +185,7 @@ function shuffle(tiles){
 		let tile = tiles.splice(random, 1);
 		move(tile[0], false);
 	};
-}
+};
 
 
 
