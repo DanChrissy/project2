@@ -1,5 +1,10 @@
 window.onload = function (){
 	allPuzzle();
+	/*var shuffleButton = document.getElementById("shufflebutton");
+	shufflebutton.onclick = function (){
+		var puzzle = document.getElementById("puzzlearea");
+		shuffle(puzzle);
+	}*/
 }
 
 function allPuzzle (){
@@ -7,12 +12,21 @@ function allPuzzle (){
 	var countL = 0;
 	var countT = 0;
 	var countB = 0;
-	
+
 	function puzzle (){
 		numbers[i].setAttribute("class", "#puzzlearea puzzlepiece");
 		numbers[i].style.marginLeft = countL + "px";
 		numbers[i].style.marginTop = countT + "px";
-		numbers[i].id = "square_" + countT + "_" + countL ;
+
+		for (var t = 0; t <= numbers.length; i++) {
+			var idTop = countL.toString();
+			var idLeft = countT.toString();
+			var idTile = idTop + "_" + idLeft;
+
+			numbers[t].setAttribute("id", "idTile");
+		};
+
+
 	}
 
 	for (var i = 0; i <= 3; i++){
@@ -24,7 +38,7 @@ function allPuzzle (){
 		if (countL <= 300)
 		{
 			puzzle();
-			countL += 100;			
+			countL += 100;	
 		};	
 	};countL = 0;
 	countT = countT + 100;
@@ -57,7 +71,7 @@ function allPuzzle (){
 	};countL = 0;
 	countT = countT + 100;
 
-	for (var i = 12; i <= 15; i++){
+	for (var i = 12; i <= 14; i++){
 		for(var p = 12; p <=14; p++){
 			numbers[p].style.backgroundPosition = countB + "px -300px";
 			countB -= 100;
@@ -69,4 +83,8 @@ function allPuzzle (){
 			countL += 100;			
 		};	
 	};countL = 0;
+
 }
+
+
+
