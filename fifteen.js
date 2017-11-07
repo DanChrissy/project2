@@ -4,13 +4,6 @@ var emptyCol = "300px";
 window.onload = function (){
 	allPuzzle();
 	var pieces = document.getElementById("puzzlearea").querySelectorAll("div");
-
-	/*var shuffleButton = document.getElementById("shufflebutton");
-	var area = document.getElementById("puzzlearea");
-	shuffleButton.onclick = function() {
-        shuffle(pieces);
-    };*/
-
 	for (var s = 0; s < pieces.length; s++){
 
 		pieces[s].onclick = function(){
@@ -28,9 +21,15 @@ window.onload = function (){
 		pieces[s].onmouseleave = function(){
 			this.classList.remove("movablepiece");
 		};
-
-
 	};
+	
+	var area = document.getElementById("puzzlearea").querySelectorAll("div");
+	let shuffleButton = document.getElementById("shufflebutton");
+	shuffleButton.onclick = function() {
+        alert("Working");
+        shuffle(area);
+    };
+
 }
 
 function allPuzzle (){
@@ -115,21 +114,6 @@ function allPuzzle (){
 	};countL = 0;
 };
 
-function getSquare (row,column){
-	let tiles = document.getElementById("puzzlearea").querySelectorAll("div");
-	for (let t = 0; t < tiles.length; t++)
-	{
-		let pos = tiles[t].getAttributeNode("data-pos").value;
-		let input = pos.split(",");
-		let posRow = input[0];
-		let posCol = input[1];
-	
-		if(posRow == row && posCol == column){
-			console.log(tiles[t].textContent);
-		};
-	};
-};
-
 function move(tile, movement){
 	
 	let tileRow = tile.style.marginTop;
@@ -138,45 +122,37 @@ function move(tile, movement){
 	if (movement == true){
 		
 		if (((parseInt(tileRow) + 100) + "px") == emptyRow && tileCol == emptyCol){
-			$(tile).animate({"margin-top":"+=100px"});
+			$(tile).animate({"fontSize": "50px","margin-top":"+=100px"});
 			emptyRow = (parseInt(emptyRow) - 100) + "px";
-			emptyCol = tileCol;	
-			console.log("Margin Top: " + tile.style.marginTop);	
-			console.log("Margin Left: " + tile.style.marginLeft);	
+			emptyCol = tileCol;		
 		}
 		
 		else if (((parseInt(tileCol) + 100) + "px") == emptyCol && tileRow == emptyRow){
-			$(tile).animate({"margin-left": "+=100px"});
+			$(tile).animate({"fontSize": "50px","margin-left": "+=100px"});
 			emptyCol = (parseInt(emptyCol) - 100) + "px";
 			emptyRow = tileRow;
-			console.log("Margin Top: " + tile.style.marginTop);	
-			console.log("Margin Left: " + tile.style.marginLeft);
 		}
 
 		else if (((parseInt(tileRow) - 100) + "px") == emptyRow && tileCol == emptyCol){
-			$(tile).animate({"margin-top": "-=100px"});
+			$(tile).animate({"fontSize": "50px","margin-top": "-=100px"});
 			emptyRow = (parseInt(emptyRow) + 100) + "px";
 			emptyCol = tileCol;
-			console.log("Margin Top: " + tile.style.marginTop);	
-			console.log("Margin Left: " + tile.style.marginLeft);
 		}
 		
 		else if (((parseInt(tileCol) - 100) + "px") == emptyCol && tileRow == emptyCol){
-			$(tile).animate({"margin-left": "-=100px"});
+			$(tile).animate({"fontSize": "50px","margin-left": "-=100px"});
 			emptyCol = (parseInt(emptyCol) + 100) + "px";
 			emptyRow = tileRow;
-			console.log("Margin Top: " + tile.style.marginTop);	
-			console.log("Margin Left: " + tile.style.marginLeft);
 		}
 
 		else if(emptyRow == "0px" && tileCol == emptyCol){
-			$(tile).animate({"margin-top": "-=100px"});
+			$(tile).animate({"fontSize": "50px","margin-top": "-=100px"});
 			emptyRow = (parseInt(emptyRow) + 100) + "px";
 			emptyCol = tileCol;
 		}
 
 		else if (emptyCol == "0px" && tileRow == emptyRow){
-			$(tile).animate({"margin-left": "-=100px"});
+			$(tile).animate({"fontSize": "50px","margin-left": "-=100px"});
 			emptyCol = (parseInt(emptyCol) + 100) + "px";
 			emptyRow = tileRow;
 		}
@@ -196,27 +172,15 @@ function moveable(tile){
 	};return false;
 }
 
-/*function emptySquare(){
-	let squares = document.getElementById("puzzlearea").querySelectorAll("div");
-	for (let i = 0; i <= squares.length - 1; i++) {
-		if((squares[i].style.backgroundImage = "") == true){
-			let emptyTop = squares[i].style.top ;
-			let emptyLeft = squares[i].style.left;
-			alert(emptyTop);
-		};
-	};
-	
-};
+function shuffle (tiles){
+	let tile, random;
 
-var emptyTop = 
-
-function emptySquare(){
-	let squares = document.getElementById("puzzlearea").querySelectorAll("div");
-	for (let s = 0; s <= squares.length; s++){
-		if (squar)
+	for (let r = 0; r <= tiles.length; r++){
+		random = Math.floor(Math.random() * tiles.length);
+        tile = tiles.splice(random, 1);
+        move(tile[0], false);
 	}
-
-}*/
+}
 
 
 
